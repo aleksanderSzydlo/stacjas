@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacje Paliwowe S - Twoje miejsce na drodze</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="zdjęcia/logo.jpg" alt="Logo Stacji Paliwowych S">
+                    <span>Stacje Paliwowe S</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Strona główna</a></li>
+                    <li><a href="#locations">Nasze stacje</a></li>
+                    <li><a href="#services">Usługi</a></li>
+                    <li><a href="#map">Mapa</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Witamy w sieci Stacji Paliwowych S</h1>
+                <p>Twoje zaufane miejsce na drodze - jakość, wygoda i przyjazna obsługa w trzech lokalizacjach na Śląsku</p>
+                <div class="hero-buttons">
+                    <a href="#locations" class="btn btn-primary">Znajdź stację</a>
+                    <a href="#services" class="btn btn-secondary">Nasze usługi</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="zdjęcia/dabrowa gornicza.jpg" alt="Stacja paliwowa S">
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Nasze usługi</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">⛽</div>
+                        <h3>Paliwa wysokiej jakości</h3>
+                        <p>Benzyna bezołowiowa 95, 98, olej napędowy oraz gaz LPG</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔥</div>
+                        <h3>Butle gazowe</h3>
+                        <p>Sprzedaż i wymiana butli gazowych różnych pojemności</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">☕</div>
+                        <h3>Pyszna kawa</h3>
+                        <p>Świeżo parzona kawa dostępna na wszystkich naszych stacjach</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🌭</div>
+                        <h3>Hotdogi</h3>
+                        <p>Gorące hotdogi na stacjach Orląt Lwowskich i Dąbrowa Górnicza</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚗</div>
+                        <h3>Obsługa 24/7</h3>
+                        <p>Większość naszych stacji czynna całą dobę</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💳</div>
+                        <h3>Płatności bezgotówkowe</h3>
+                        <p>Akceptujemy karty płatnicze, BLIK i płatności mobilne</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="locations" class="locations">
+            <div class="container">
+                <h2>Nasze lokalizacje</h2>
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <img src="zdjęcia/dabrowa gornicza.jpg" alt="Stacja Dąbrowa Górnicza">
+                        <div class="location-info">
+                            <h3>Dąbrowa Górnicza</h3>
+                            <p class="address">ul. Porozumienia Dąbrowskiego 1980 2B<br>Dąbrowa Górnicza</p>
+                            <div class="location-features">
+                                <span class="feature">☕ Kawa</span>
+                                <span class="feature">🌭 Hotdogi</span>
+                                <span class="feature">⛽ Wszystkie paliwa</span>
+                                <span class="feature">🔥 Butle gazowe</span>
+                            </div>
+                            <p class="hours">Godziny otwarcia: 24/7</p>
+                        </div>
+                    </div>
+                    
+                    <div class="location-card">
+                        <img src="zdjęcia/sosnowiec orlat lwowskich.jpg" alt="Stacja Sosnowiec Orląt Lwowskich">
+                        <div class="location-info">
+                            <h3>Sosnowiec - Orląt Lwowskich</h3>
+                            <p class="address">ul. Orląt Lwowskich 46<br>Sosnowiec</p>
+                            <div class="location-features">
+                                <span class="feature">☕ Kawa</span>
+                                <span class="feature">🌭 Hotdogi</span>
+                                <span class="feature">⛽ Wszystkie paliwa</span>
+                                <span class="feature">🔥 Butle gazowe</span>
+                            </div>
+                            <p class="hours">Godziny otwarcia: 6:00 - 22:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="location-card">
+                        <img src="zdjęcia/sosnowiec narutowicza.jpg" alt="Stacja Sosnowiec Narutowicza">
+                        <div class="location-info">
+                            <h3>Sosnowiec - Narutowicza</h3>
+                            <p class="address">ul. Narutowicza 55<br>Sosnowiec</p>
+                            <div class="location-features">
+                                <span class="feature">☕ Kawa</span>
+                                <span class="feature">⛽ Wszystkie paliwa</span>
+                                <span class="feature">🔥 Butle gazowe</span>
+                            </div>
+                            <p class="hours">Godziny otwarcia: 6:00 - 22:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class="map-section">
+            <div class="container">
+                <h2>Znajdź nas na mapie</h2>
+                <div id="map" class="map-container"></div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2>Często zadawane pytania</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Jakie rodzaje paliw oferujecie?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Oferujemy pełną gamę paliw: benzynę bezołowiową 95 i 98, olej napędowy oraz gaz LPG. Wszystkie nasze paliwa spełniają najwyższe standardy jakości.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Czy przyjmujecie karty płatnicze?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tak, akceptujemy wszystkie popularne karty płatnicze (Visa, Mastercard, Maestro), BLIK oraz płatności mobilne (Apple Pay, Google Pay).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Gdzie mogę kupić hotdogi?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Hotdogi są dostępne na dwóch naszych stacjach: w Dąbrowie Górniczej (ul. Porozumienia Dąbrowskiego 1980 2B) oraz w Sosnowcu (ul. Orląt Lwowskich 46).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Czy oferujecie butle gazowe?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tak, na wszystkich naszych stacjach oferujemy sprzedaż i wymianę butli gazowych różnych pojemności (2kg, 5kg, 11kg).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Jakie są godziny otwarcia?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Stacja w Dąbrowie Górniczej jest czynna 24/7. Stacje w Sosnowcu są otwarte od 6:00 do 22:00.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Czy mają Państwo program lojalnościowy?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tak, oferujemy kartę stałego klienta, która daje prawo do zniżek na paliwa i produkty spożywcze. Szczegóły w naszych stacjach.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Czy można płacić za paliwo z aplikacji?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tak, współpracujemy z popularnymi aplikacjami do płatności za paliwo. Możliwość płatności mobilnej dostępna na wszystkich stacjach.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Czy oferujecie mycie samochodów?</h3>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Obecnie nie oferujemy usług myjni samochodowych, jednak planujemy rozszerzenie oferty w przyszłości.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Kontakt</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Skontaktuj się z nami</h3>
+                        <div class="contact-item">
+                            <strong>Telefon:</strong>
+                            <p>+48 32 123 45 67</p>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <p>info@stacjes.pl</p>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Godziny biura:</strong>
+                            <p>Pon-Pt: 8:00-16:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Napisz do nas</h3>
+                        <form>
+                            <input type="text" placeholder="Imię i nazwisko" required>
+                            <input type="email" placeholder="Email" required>
+                            <textarea placeholder="Wiadomość" rows="5" required></textarea>
+                            <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Stacje Paliwowe S</h4>
+                    <p>Twoje zaufane miejsce na drodze</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Szybkie linki</h4>
+                    <ul>
+                        <li><a href="#home">Strona główna</a></li>
+                        <li><a href="#locations">Nasze stacje</a></li>
+                        <li><a href="#services">Usługi</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <p>Tel: +48 32 123 45 67</p>
+                    <p>Email: info@stacjes.pl</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stacje Paliwowe S. Wszystkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
