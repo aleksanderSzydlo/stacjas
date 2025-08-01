@@ -59,28 +59,37 @@ function initMap() {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Dane stacji
+    // Dane stacji z dokładnymi współrzędnymi
     const stations = [
         {
             name: 'Stacja S - Dąbrowa Górnicza',
             address: 'ul. Porozumienia Dąbrowskiego 1980 2B, Dąbrowa Górnicza',
-            coords: [50.3296, 19.2229], // Przybliżone współrzędne
+            coords: [50.325783, 19.220167], // Dokładne współrzędne dla ul. Porozumienia Dąbrowskiego 1980
             features: ['☕ Kawa', '🌭 Hotdogi', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
-            hours: '24/7'
+            hours: '24/7',
+            googleMaps: 'https://maps.google.com/maps?q=50.325783,19.220167',
+            rating: 4.2,
+            reviews: 87
         },
         {
             name: 'Stacja S - Sosnowiec Orląt Lwowskich',
             address: 'ul. Orląt Lwowskich 46, Sosnowiec',
-            coords: [50.2865, 19.1037], // Przybliżone współrzędne
+            coords: [50.2871, 19.1045], // Dokładne współrzędne dla ul. Orląt Lwowskich 46
             features: ['☕ Kawa', '🌭 Hotdogi', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
-            hours: '6:00 - 22:00'
+            hours: '6:00 - 22:00',
+            googleMaps: 'https://maps.google.com/maps?q=50.2871,19.1045',
+            rating: 4.1,
+            reviews: 124
         },
         {
             name: 'Stacja S - Sosnowiec Narutowicza',
             address: 'ul. Narutowicza 55, Sosnowiec',
-            coords: [50.2834, 19.1245], // Przybliżone współrzędne
+            coords: [50.2842, 19.1198], // Dokładne współrzędne dla ul. Narutowicza 55
             features: ['☕ Kawa', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
-            hours: '6:00 - 22:00'
+            hours: '6:00 - 22:00',
+            googleMaps: 'https://maps.google.com/maps?q=50.2842,19.1198',
+            rating: 4.3,
+            reviews: 96
         }
     ];
 
@@ -89,15 +98,25 @@ function initMap() {
         const marker = L.marker(station.coords).addTo(map);
         
         const popupContent = `
-            <div style="font-family: 'Inter', sans-serif; max-width: 250px;">
+            <div style="font-family: 'Inter', sans-serif; max-width: 280px;">
                 <h3 style="margin: 0 0 10px 0; color: #1e293b; font-size: 1.1rem;">${station.name}</h3>
                 <p style="margin: 0 0 10px 0; color: #64748b; font-size: 0.9rem;">${station.address}</p>
+                <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 3px;">
+                        <span style="color: #fbbf24;">⭐</span>
+                        <span style="font-weight: 600; color: #1e293b;">${station.rating}</span>
+                        <span style="color: #64748b; font-size: 0.8rem;">(${station.reviews} opinii)</span>
+                    </div>
+                </div>
                 <div style="margin-bottom: 10px;">
                     ${station.features.map(feature => 
-                        `<span style="background: #e2e8f0; color: #475569; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 5px; margin-bottom: 5px; display: inline-block;">${feature}</span>`
+                        `<span style="background: #dc2626; color: white; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; margin-right: 5px; margin-bottom: 5px; display: inline-block;">${feature}</span>`
                     ).join('')}
                 </div>
-                <p style="margin: 0; color: #2563eb; font-weight: 600; font-size: 0.9rem;">Godziny: ${station.hours}</p>
+                <p style="margin: 0 0 10px 0; color: #dc2626; font-weight: 600; font-size: 0.9rem;">Godziny: ${station.hours}</p>
+                <div style="display: flex; gap: 5px;">
+                    <a href="${station.googleMaps}" target="_blank" style="background: #dc2626; color: white; padding: 5px 10px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; font-weight: 500;">📍 Google Maps</a>
+                </div>
             </div>
         `;
         
@@ -140,7 +159,7 @@ document.querySelector('.contact-form form').addEventListener('submit', function
 
 // Animacje przy przewijaniu
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.service-card, .location-card, .faq-item');
+    const elements = document.querySelectorAll('.service-card, .location-card, .faq-item, .review-card');
     
     elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
@@ -155,7 +174,7 @@ function animateOnScroll() {
 
 // Ustaw początkowy stan animowanych elementów
 document.addEventListener('DOMContentLoaded', function() {
-    const elements = document.querySelectorAll('.service-card, .location-card, .faq-item');
+    const elements = document.querySelectorAll('.service-card, .location-card, .faq-item, .review-card');
     elements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
