@@ -64,30 +64,30 @@ function initMap() {
         {
             name: 'Stacja S - Dąbrowa Górnicza',
             address: 'ul. Porozumienia Dąbrowskiego 1980 2B, Dąbrowa Górnicza',
-            coords: [50.325783, 19.220167], // Dokładne współrzędne dla ul. Porozumienia Dąbrowskiego 1980
+            coords: [50.31692947366358, 19.203630915278197], // Dokładne współrzędne
             features: ['☕ Kawa', '🌭 Hotdogi', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
             hours: '24/7',
-            googleMaps: 'https://maps.google.com/maps?q=50.325783,19.220167',
+            googleMaps: 'https://maps.google.com/maps?q=50.31692947366358,19.203630915278197',
             rating: 4.2,
             reviews: 87
         },
         {
             name: 'Stacja S - Sosnowiec Orląt Lwowskich',
             address: 'ul. Orląt Lwowskich 46, Sosnowiec',
-            coords: [50.2871, 19.1045], // Dokładne współrzędne dla ul. Orląt Lwowskich 46
+            coords: [50.28529134844678, 19.149529982398295], // Dokładne współrzędne
             features: ['☕ Kawa', '🌭 Hotdogi', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
             hours: '6:00 - 22:00',
-            googleMaps: 'https://maps.google.com/maps?q=50.2871,19.1045',
+            googleMaps: 'https://maps.google.com/maps?q=50.28529134844678,19.149529982398295',
             rating: 4.1,
             reviews: 124
         },
         {
             name: 'Stacja S - Sosnowiec Narutowicza',
             address: 'ul. Narutowicza 55, Sosnowiec',
-            coords: [50.2842, 19.1198], // Dokładne współrzędne dla ul. Narutowicza 55
+            coords: [50.23916009552177, 19.154755899847597], // Dokładne współrzędne
             features: ['☕ Kawa', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
             hours: '6:00 - 22:00',
-            googleMaps: 'https://maps.google.com/maps?q=50.2842,19.1198',
+            googleMaps: 'https://maps.google.com/maps?q=50.23916009552177,19.154755899847597',
             rating: 4.3,
             reviews: 96
         }
