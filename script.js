@@ -7,6 +7,22 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 100
     });
 
+    // Wymuszenie odtwarzania wideo
+    const heroVideo = document.querySelector('.hero-video');
+    const aboutVideo = document.querySelector('.about-video');
+    
+    if (heroVideo) {
+        heroVideo.play().catch(function(error) {
+            console.log('Autoplay was prevented:', error);
+        });
+    }
+    
+    if (aboutVideo) {
+        aboutVideo.play().catch(function(error) {
+            console.log('Autoplay was prevented:', error);
+        });
+    }
+
     // Loader
     const loader = document.getElementById('loader');
     setTimeout(() => {
@@ -37,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         counters.forEach(counter => {
             const target = parseInt(counter.getAttribute('data-count'));
-            const duration = 4000; // 4 sekundy - wolniejsza animacja
+            const duration = 2000; // 2 sekundy - szybsza animacja
             const step = target / (duration / 16); // 60fps
             let current = 0;
             
@@ -125,20 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// Funkcja do przełączania informacji o lokalizacji
-function toggleLocationInfo(button) {
-    const card = button.closest('.location-card');
-    const details = card.querySelector('.location-details');
-    
-    if (details.style.display === 'none' || !details.style.display) {
-        details.style.display = 'block';
-        button.innerHTML = '<span>⬆️</span> Mniej';
-    } else {
-        details.style.display = 'none';
-        button.innerHTML = '<span>ℹ️</span> Więcej';
-    }
-}
 
 // Płynne przewijanie
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -319,5 +321,52 @@ window.addEventListener('scroll', function() {
     } else {
         header.style.background = 'var(--background-white)';
         header.style.backdropFilter = 'none';
+    }
+});
+
+// Lightbox dla galerii
+function openLightbox(img) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    
+    lightbox.style.display = 'block';
+    lightboxImg.src = img.src;
+    lightboxCaption.innerHTML = img.alt;
+    
+    // Dodaj animację fadeIn
+    lightbox.style.opacity = '0';
+    setTimeout(() => {
+        lightbox.style.opacity = '1';
+    }, 10);
+    
+    // Zablokuj scrollowanie strony
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    
+    // Dodaj animację fadeOut
+    lightbox.style.opacity = '0';
+    setTimeout(() => {
+        lightbox.style.display = 'none';
+        // Przywróć scrollowanie strony
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+// Zamknij lightbox klawiszem ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
+
+// Dodaj transition do lightbox
+document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.style.transition = 'opacity 0.3s ease';
     }
 });

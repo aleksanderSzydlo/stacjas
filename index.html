@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+1<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stacje Paliw S - Twoje miejsce na drodze</title>
+    <title>Stacje S</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,18 +18,20 @@
         <nav class="nav">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <img src="zdjęcia/logo.jpg" alt="Logo Stacji Paliw S">
-                    <span>Stacje Paliw S</span>
+                    <a href="#home">
+                        <img src="zdjęcia/logo.jpg" alt="Logo Stacji Paliw S">
+                        <span>Stacje Paliw S</span>
+                    </a>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="#home">Strona główna</a></li>
                     <li><a href="#about">O nas</a></li>
+                    <li><a href="#gallery">Galeria</a></li>
                     <li><a href="#locations">Nasze stacje</a></li>
                     <li><a href="#services">Usługi</a></li>
                     <li><a href="#map">Mapa</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#reviews">Opinie</a></li>
-                    <li><a href="#contact">Kontakt</a></li>
+                    <li><a href="#contact" class="contact-link">Kontakt</a></li>
                 </ul>
                 <div class="hamburger">
                     <span></span>
@@ -55,28 +57,197 @@
         </div>
 
         <section id="home" class="hero">
-            <div class="hero-content">
-                <h1 class="animate-fade-in">Witamy w sieci Stacji Paliw S</h1>
-                <p class="animate-fade-in-delay">Twoje zaufane miejsce na drodze - jakość, wygoda i przyjazna obsługa w trzech lokalizacjach na Śląsku</p>
-                <div class="hero-buttons animate-fade-in-delay-2">
-                    <a href="#locations" class="btn btn-primary">
-                        <span>📍</span>
-                        Znajdź stację
-                    </a>
-                    <a href="#services" class="btn btn-secondary">
-                        <span>⚡</span>
-                        Nasze usługi
-                    </a>
+            <div class="hero-background">
+                <img src="zdjęcia/dabrowa gornicza.jpg" alt="Stacja paliw Dąbrowa Górnicza" class="hero-bg-image">
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="animate-fade-in">Stacje Paliw S</h1>
+                    <p class="hero-subtitle animate-fade-in-delay">Paliwo, kawa i odpoczynek w miłej atmosferze</p>
+                    <p class="hero-welcome animate-fade-in-delay"><span class="super-red">S</span>uper, że jesteś!</p>
+                    <div class="hero-buttons animate-fade-in-delay-2">
+                        <a href="#locations" class="btn btn-primary">
+                            <span>📍</span>
+                            Znajdź stację
+                        </a>
+                        <a href="#services" class="btn btn-secondary">
+                            <span>⚡</span>
+                            Nasze usługi
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="30">0</div>
+                            <div class="stat-label">lat doświadczenia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="3">0</div>
+                            <div class="stat-label">lokalizacje</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="300000">0</div>
+                            <div class="stat-label">zadowolonych klientów</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image animate-slide-in">
-                <img src="zdjęcia/dabrowa gornicza.jpg" alt="Stacja paliwowa S">
-                <div class="hero-overlay">
-                    <div class="hero-badge">
-                        <span>🏆</span>
-                        <div>
-                            <strong>Najlepsza jakość</strong>
-                            <small>Od 1994 roku</small>
+        </section>
+
+        <section id="locations" class="locations">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">📍 Gdzie nas znajdziesz</span>
+                    <h2>Nasze lokalizacje</h2>
+                    <p>Strategicznie rozmieszczone stacje w regionie</p>
+                </div>
+                
+                    <div class="locations-filter">
+                    <button class="filter-btn active" data-filter="all">Wszystkie</button>
+                    <button class="filter-btn" data-filter="24h">Całodobowe (wszystkie)</button>
+                    <button class="filter-btn" data-filter="hotdog">Z hotdogami</button>
+                    <button class="filter-btn" data-filter="kompresor">Z kompresorem</button>
+                </div>
+                
+                <div class="locations-grid">
+                    <div class="location-card" data-category="24h hotdog kompresor" data-aos="fade-up" data-aos-delay="100">
+                        <div class="location-image">
+                            <img src="zdjęcia/dabrowa gornicza dzien.jpg" alt="Stacja Dąbrowa Górnicza">
+                            <div class="location-status">
+                                <span class="status-badge open">Otwarte 24/7</span>
+                            </div>
+                        </div>
+                        <div class="location-info">
+                            <h3>Dąbrowa Górnicza</h3>
+                            <p class="address">
+                                <span class="address-icon">📍</span>
+                                ul. Porozumienia Dąbrowskiego 1980 2B<br>Dąbrowa Górnicza
+                            </p>
+                            <div class="location-rating">
+                                <div class="stars">
+                                    <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-score">4.2</span>
+                                </div>
+                                <span class="rating-count">(87 opinii)</span>
+                            </div>
+                            <div class="location-features">
+                                <span class="feature premium">☕ Kawa</span>
+                                <span class="feature premium">🌭 Hotdogi</span>
+                                <span class="feature premium">🔧 Kompresor</span>
+                                <span class="feature">⛽ Wszystkie paliwa</span>
+                                <span class="feature">🔥 Butle gazowe</span>
+                            </div>
+                            <div class="location-details">
+                                <div class="detail-item">
+                                    <span class="detail-icon">🕒</span>
+                                    <span class="detail-text">Godziny otwarcia: 24/7 (z przerwą techniczną 23:45-00:30)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">📞</span>
+                                    <span class="detail-text"><strong>+48 780 637 399</strong> - Kontakt</span>
+                                </div>
+                            </div>
+                            <div class="location-actions">
+                                <a href="https://maps.google.com/maps?q=50.31692947366358,19.203630915278197" target="_blank" class="btn btn-map">
+                                    <span>📍</span> Nawiguj
+                                </a>
+                                <a href="https://www.facebook.com" target="_blank" class="btn btn-facebook">
+                                    <span>📘</span> Facebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="location-card" data-category="24h hotdog kompresor" data-aos="fade-up" data-aos-delay="200">
+                        <div class="location-image">
+                            <img src="zdjęcia/sosnowiec orlat lwowskich.jpg" alt="Stacja Sosnowiec Orląt Lwowskich">
+                            <div class="location-status">
+                                <span class="status-badge open">Otwarte 24/7</span>
+                            </div>
+                        </div>
+                        <div class="location-info">
+                            <h3>Sosnowiec - Orląt Lwowskich</h3>
+                            <p class="address">
+                                <span class="address-icon">📍</span>
+                                ul. Orląt Lwowskich 46<br>Sosnowiec
+                            </p>
+                            <div class="location-rating">
+                                <div class="stars">
+                                    <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-score">4.1</span>
+                                </div>
+                                <span class="rating-count">(124 opinii)</span>
+                            </div>
+                            <div class="location-features">
+                                <span class="feature premium">☕ Kawa</span>
+                                <span class="feature premium">🌭 Hotdogi</span>
+                                <span class="feature premium">🔧 Kompresor</span>
+                                <span class="feature">⛽ Wszystkie paliwa</span>
+                                <span class="feature">🔥 Butle gazowe</span>
+                            </div>
+                            <div class="location-details">
+                                <div class="detail-item">
+                                    <span class="detail-icon">🕒</span>
+                                    <span class="detail-text">Godziny otwarcia: 24/7 (z przerwą techniczną 23:45-00:30)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">📞</span>
+                                    <span class="detail-text"><strong>+48 798 167 445</strong> - Kontakt</span>
+                                </div>
+                            </div>
+                            <div class="location-actions">
+                                <a href="https://maps.google.com/maps?q=50.28529134844678,19.149529982398295" target="_blank" class="btn btn-map">
+                                    <span>📍</span> Nawiguj
+                                </a>
+                                <a href="https://www.facebook.com" target="_blank" class="btn btn-facebook">
+                                    <span>📘</span> Facebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="location-card" data-category="24h" data-aos="fade-up" data-aos-delay="300">
+                        <div class="location-image">
+                            <img src="zdjęcia/sosnowiec narutowicza.jpg" alt="Stacja Sosnowiec Narutowicza">
+                            <div class="location-status">
+                                <span class="status-badge open">Otwarte 24/7</span>
+                            </div>
+                        </div>
+                        <div class="location-info">
+                            <h3>Sosnowiec - Narutowicza</h3>
+                            <p class="address">
+                                <span class="address-icon">📍</span>
+                                ul. Narutowicza 55<br>Sosnowiec
+                            </p>
+                            <div class="location-rating">
+                                <div class="stars">
+                                    <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-score">4.3</span>
+                                </div>
+                                <span class="rating-count">(96 opinii)</span>
+                            </div>
+                            <div class="location-features">
+                                <span class="feature premium">☕ Kawa</span>
+                                <span class="feature">⛽ Wszystkie paliwa</span>
+                                <span class="feature">🔥 Butle gazowe</span>
+                            </div>
+                            <div class="location-details">
+                                <div class="detail-item">
+                                    <span class="detail-icon">🕒</span>
+                                    <span class="detail-text">Godziny otwarcia: 24/7 (z przerwą techniczną 23:45-00:30)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">📞</span>
+                                    <span class="detail-text"><strong>+48 572 833 939</strong> - Kontakt</span>
+                                </div>
+                            </div>
+                            <div class="location-actions">
+                                <a href="https://maps.google.com/maps?q=50.23916009552177,19.154755899847597" target="_blank" class="btn btn-map">
+                                    <span>📍</span> Nawiguj
+                                </a>
+                                <a href="https://www.facebook.com" target="_blank" class="btn btn-facebook">
+                                    <span>📘</span> Facebook
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,11 +255,13 @@
         </section>
 
         <section id="about" class="about">
+            <video class="about-video" autoplay muted loop playsinline preload="auto">
+                <source src="Galeria/3752531-hd_1920_1080_24fps.mp4" type="video/mp4">
+                Twoja przeglądarka nie obsługuje odtwarzania wideo.
+            </video>
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">📖 Nasza historia</span>
-                    <h2>O nas</h2>
-                    <p>Poznaj naszą rodzinną firmę z tradycjami</p>
                 </div>
                 
                 <div class="about-content">
@@ -108,7 +281,7 @@
                                 </div>
                                 <div class="value-item" data-aos="fade-up" data-aos-delay="200">
                                     <div class="value-icon">👥</div>
-                                    <h5>Profesjonalna obsługa</h5>
+                                    <h5>Profesjonalizm</h5>
                                     <p>Nasz zespół to wykwalifikowani specjaliści gotowi pomóc w każdej sytuacji</p>
                                 </div>
                                 <div class="value-item" data-aos="fade-up" data-aos-delay="300">
@@ -121,21 +294,6 @@
                                     <h5>Życzliwość</h5>
                                     <p>Każdy klient jest dla nas ważny - obsługujemy z uśmiechem i zaangażowaniem</p>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="30">0</div>
-                                <div class="stat-label">lat doświadczenia</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="3">0</div>
-                                <div class="stat-label">lokalizacje</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="100000">0</div>
-                                <div class="stat-label">zadowolonych klientów</div>
                             </div>
                         </div>
                     </div>
@@ -243,179 +401,153 @@
                             <li>✓ Łatwy w obsłudze</li>
                         </ul>
                     </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="800">
+                        <div class="service-header">
+                            <div class="service-icon">👶</div>
+                            <div class="service-badge">Rodzinne</div>
+                        </div>
+                        <h3>Strefa Małego Pasażera</h3>
+                        <p>Toaleta z przewijakiem wyposażona w artykuły higieniczne dla najmłodszych, krzesełko do karmienia, sprzedaż zabawek</p>
+                        <ul class="service-features">
+                            <li>✓ Przewijak dla dzieci</li>
+                            <li>✓ Krzesełko do karmienia</li>
+                            <li>✓ Zabawki dla dzieci</li>
+                        </ul>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="900">
+                        <div class="service-header">
+                            <div class="service-icon">💼</div>
+                            <div class="service-badge">Biznesowe</div>
+                        </div>
+                        <h3>Strefa Pracy w Trasie</h3>
+                        <p>Stolik z dostępem do prądu, bezpłatne WI-FI, aromatyczna kawa na miejscu</p>
+                        <ul class="service-features">
+                            <li>✓ Dostęp do prądu</li>
+                            <li>✓ Bezpłatne Wi-Fi</li>
+                            <li>✓ Miejsce do pracy</li>
+                        </ul>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="1000">
+                        <div class="service-header">
+                            <div class="service-icon">🥤</div>
+                            <div class="service-badge">Ekologiczne</div>
+                        </div>
+                        <h3>Wymiana naboju SodaStream</h3>
+                        <p>Wymieniamy naboje SodaStream - tylko koszt gazu, oddajesz pusty, dostajesz pełny</p>
+                        <ul class="service-features">
+                            <li>✓ Szybka wymiana</li>
+                            <li>✓ Konkurencyjne ceny</li>
+                            <li>✓ Ekologiczne rozwiązanie</li>
+                        </ul>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="1100">
+                        <div class="service-header">
+                            <div class="service-icon">🚗</div>
+                            <div class="service-badge">Awaryjne</div>
+                        </div>
+                        <h3>Samochodowe SOS</h3>
+                        <p>Oleje silnikowe (najpopularniejsze typy), płyny do spryskiwaczy, ściereczki, odmrażacze, kosmetyki samochodowe, bezpieczniki, żarówki i akcesoria pierwszej potrzeby</p>
+                        <ul class="service-features">
+                            <li>✓ Oleje silnikowe</li>
+                            <li>✓ Płyny eksploatacyjne</li>
+                            <li>✓ Akcesoria awaryjne</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="locations" class="locations">
+        <!-- Galeria zdjęć -->
+        <section id="gallery" class="gallery">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">📍 Gdzie nas znajdziesz</span>
-                    <h2>Nasze lokalizacje</h2>
-                    <p>Strategicznie rozmieszczone stacje w regionie</p>
+                    <span class="section-tag">📸 Nasze stacje</span>
+                    <h2>Galeria</h2>
+                    <p>Zobacz jak wyglądają nasze nowoczesne stacje paliw</p>
                 </div>
                 
-                    <div class="locations-filter">
-                    <button class="filter-btn active" data-filter="all">Wszystkie</button>
-                    <button class="filter-btn" data-filter="24h">Całodobowe (wszystkie)</button>
-                    <button class="filter-btn" data-filter="hotdog">Z hotdogami</button>
-                    <button class="filter-btn" data-filter="kompresor">Z kompresorem</button>
-                </div>
-                
-                <div class="locations-grid">
-                    <div class="location-card" data-category="24h hotdog kompresor" data-aos="fade-up" data-aos-delay="100">
-                        <div class="location-image">
-                            <img src="zdjęcia/dabrowa gornicza.jpg" alt="Stacja Dąbrowa Górnicza">
-                            <div class="location-status">
-                                <span class="status-badge open">Otwarte 24/7</span>
-                            </div>
-                        </div>
-                        <div class="location-info">
-                            <h3>Dąbrowa Górnicza</h3>
-                            <p class="address">
-                                <span class="address-icon">📍</span>
-                                ul. Porozumienia Dąbrowskiego 1980 2B<br>Dąbrowa Górnicza
-                            </p>
-                            <div class="location-rating">
-                                <div class="stars">
-                                    <span class="rating-stars">⭐⭐⭐⭐⭐</span>
-                                    <span class="rating-score">4.2</span>
-                                </div>
-                                <span class="rating-count">(87 opinii)</span>
-                            </div>
-                            <div class="location-features">
-                                <span class="feature premium">☕ Kawa</span>
-                                <span class="feature premium">🌭 Hotdogi</span>
-                                <span class="feature premium">🔧 Kompresor</span>
-                                <span class="feature">⛽ Wszystkie paliwa</span>
-                                <span class="feature">🔥 Butle gazowe</span>
-                            </div>
-                            <div class="location-details">
-                                <div class="detail-item">
-                                    <span class="detail-icon">🕒</span>
-                                    <span class="detail-text">Godziny otwarcia: 24/7</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">📞</span>
-                                    <span class="detail-text">Kontakt: +48 32 123 45 67</span>
-                                </div>
-                            </div>
-                            <div class="location-actions">
-                                <a href="https://maps.google.com/maps?q=50.31692947366358,19.203630915278197" target="_blank" class="btn btn-map">
-                                    <span>📍</span> Nawiguj
-                                </a>
-                                <a href="https://www.facebook.com" target="_blank" class="btn btn-facebook">
-                                    <span>📘</span> Facebook
-                                </a>
-                                <button class="btn btn-info" onclick="toggleLocationInfo(this)">
-                                    <span>ℹ️</span> Więcej
-                                </button>
-                            </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                        <img src="Galeria/3067520F-0C5D-449E-9CDA-6B4EED9A6227.jpg" alt="Dystrybutory paliw" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Dystrybutory paliw</h3>
+                            <p>Najnowocześniejsze urządzenia do tankowania</p>
                         </div>
                     </div>
                     
-                    <div class="location-card" data-category="24h hotdog kompresor" data-aos="fade-up" data-aos-delay="200">
-                        <div class="location-image">
-                            <img src="zdjęcia/sosnowiec orlat lwowskich.jpg" alt="Stacja Sosnowiec Orląt Lwowskich">
-                            <div class="location-status">
-                                <span class="status-badge open">Otwarte 24/7</span>
-                            </div>
-                        </div>
-                        <div class="location-info">
-                            <h3>Sosnowiec - Orląt Lwowskich</h3>
-                            <p class="address">
-                                <span class="address-icon">📍</span>
-                                ul. Orląt Lwowskich 46<br>Sosnowiec
-                            </p>
-                            <div class="location-rating">
-                                <div class="stars">
-                                    <span class="rating-stars">⭐⭐⭐⭐⭐</span>
-                                    <span class="rating-score">4.1</span>
-                                </div>
-                                <span class="rating-count">(124 opinii)</span>
-                            </div>
-                            <div class="location-features">
-                                <span class="feature premium">☕ Kawa</span>
-                                <span class="feature premium">🌭 Hotdogi</span>
-                                <span class="feature premium">🔧 Kompresor</span>
-                                <span class="feature">⛽ Wszystkie paliwa</span>
-                                <span class="feature">🔥 Butle gazowe</span>
-                            </div>
-                            <div class="location-details">
-                                <div class="detail-item">
-                                    <span class="detail-icon">🕒</span>
-                                    <span class="detail-text">Godziny otwarcia: 24/7</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">📞</span>
-                                    <span class="detail-text">Kontakt: +48 32 123 45 68</span>
-                                </div>
-                            </div>
-                            <div class="location-actions">
-                                <a href="https://maps.google.com/maps?q=50.28529134844678,19.149529982398295" target="_blank" class="btn btn-map">
-                                    <span>📍</span> Nawiguj
-                                </a>
-                                <a href="https://www.facebook.com" target="_blank" class="btn btn-facebook">
-                                    <span>📘</span> Facebook
-                                </a>
-                                <button class="btn btn-info" onclick="toggleLocationInfo(this)">
-                                    <span>ℹ️</span> Więcej
-                                </button>
-                            </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                        <img src="Galeria/48389A19-FAE1-4F7D-A2E0-D9A032F4231C.jpg" alt="Wnętrze sklepu stacji" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Wnętrze sklepu</h3>
+                            <p>Szeroki asortyment produktów dla podróżnych</p>
                         </div>
                     </div>
                     
-                    <div class="location-card" data-category="24h" data-aos="fade-up" data-aos-delay="300">
-                        <div class="location-image">
-                            <img src="zdjęcia/sosnowiec narutowicza.jpg" alt="Stacja Sosnowiec Narutowicza">
-                            <div class="location-status">
-                                <span class="status-badge open">Otwarte 24/7</span>
-                            </div>
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                        <img src="Galeria/4ADAA79E-E09B-4F8F-BA20-FB8C4E10A967.jpg" alt="Strefa obsługi klienta" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Strefa obsługi</h3>
+                            <p>Profesjonalna i przyjazna obsługa klientów</p>
                         </div>
-                        <div class="location-info">
-                            <h3>Sosnowiec - Narutowicza</h3>
-                            <p class="address">
-                                <span class="address-icon">📍</span>
-                                ul. Narutowicza 55<br>Sosnowiec
-                            </p>
-                            <div class="location-rating">
-                                <div class="stars">
-                                    <span class="rating-stars">⭐⭐⭐⭐⭐</span>
-                                    <span class="rating-score">4.3</span>
-                                </div>
-                                <span class="rating-count">(96 opinii)</span>
-                            </div>
-                            <div class="location-features">
-                                <span class="feature premium">☕ Kawa</span>
-                                <span class="feature">⛽ Wszystkie paliwa</span>
-                                <span class="feature">🔥 Butle gazowe</span>
-                            </div>
-                            <div class="location-details">
-                                <div class="detail-item">
-                                    <span class="detail-icon">🕒</span>
-                                    <span class="detail-text">Godziny otwarcia: 24/7</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">📞</span>
-                                    <span class="detail-text">Kontakt: +48 32 123 45 69</span>
-                                </div>
-                            </div>
-                            <div class="location-actions">
-                                <a href="https://maps.google.com/maps?q=50.23916009552177,19.154755899847597" target="_blank" class="btn btn-map">
-                                    <span>📍</span> Nawiguj
-                                </a>
-                                <a href="https://www.facebook.com" target="_blank" class="btn btn-facebook">
-                                    <span>📘</span> Facebook
-                                </a>
-                                <button class="btn btn-info" onclick="toggleLocationInfo(this)">
-                                    <span>ℹ️</span> Więcej
-                                </button>
-                            </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                        <img src="Galeria/541DBF47-59C9-4F1E-942D-9F46C3F1096E.jpg" alt="Oświetlenie nocne stacji" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Oświetlenie nocne</h3>
+                            <p>Bezpieczne tankowanie także w nocy</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
+                        <img src="Galeria/69C7B0AA-B564-4E0B-B17D-F46B30B17841.jpg" alt="Strefa odpoczynku" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Strefa odpoczynku</h3>
+                            <p>Miejsce na krótki odpoczynek w podróży</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="600">
+                        <img src="Galeria/85ADD62B-40A1-4F3B-A514-F7CFDF1BE634.jpg" alt="Widok zewnętrzny stacji" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Widok zewnętrzny</h3>
+                            <p>Nowoczesna architektura i funkcjonalne rozwiązania</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="700">
+                        <img src="Galeria/A713253A-FA8D-4858-9BDA-6959224732EC.jpg" alt="Przestrzeń dla klientów" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Przestrzeń dla klientów</h3>
+                            <p>Komfortowe miejsce dla naszych gości</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="800">
+                        <img src="Galeria/D0C8C6F5-5047-41E1-826C-1E78D717B48B.jpg" alt="Wnętrze stacji" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Wnętrze stacji</h3>
+                            <p>Czyste i nowoczesne wnętrze</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-aos="fade-up" data-aos-delay="900">
+                        <img src="Galeria/DDA5390A-A447-4CAC-901A-07D9757171B5.jpg" alt="Obszar tankowania" onclick="openLightbox(this)">
+                        <div class="gallery-overlay">
+                            <h3>Obszar tankowania</h3>
+                            <p>Wygodne i bezpieczne tankowanie</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <span class="lightbox-close">&times;</span>
+            <img class="lightbox-content" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
 
         <section id="map" class="map-section">
             <div class="container">
@@ -434,7 +566,7 @@
                             <span class="faq-toggle">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Oferujemy pełną gamę paliw: benzynę bezołowiową 95 i 98, olej napędowy oraz gaz LPG. Wszystkie nasze paliwa spełniają najwyższe standardy jakości.</p>
+                            <p>Oferujemy pełną gamę paliw: benzynę bezołowiową 95 i 98, olej napędowy, olej napędowy VIP oraz gaz LPG. Wszystkie nasze paliwa spełniają najwyższe standardy jakości.</p>
                         </div>
                     </div>
 
@@ -454,7 +586,7 @@
                             <span class="faq-toggle">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Hotdogi są dostępne na dwóch naszych stacjach: w Dąbrowie Górniczej (ul. Porozumienia Dąbrowskiego 1980 2B) oraz w Sosnowcu (ul. Orląt Lwowskich 46).</p>
+                            <p>Hotdogi i inne ciepłe przekąski są dostępne na stacjach w Dąbrowie Górniczej (ul. Porozumienia Dąbrowskiego 1980 2B) oraz w Sosnowcu (ul. Orląt Lwowskich 46).</p>
                         </div>
                     </div>
 
@@ -474,37 +606,7 @@
                             <span class="faq-toggle">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Wszystkie nasze stacje są czynne 24 godziny na dobę, 7 dni w tygodniu. Możesz zatankować o każdej porze dnia i nocy.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Czy mają Państwo program lojalnościowy?</h3>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Tak, oferujemy kartę stałego klienta, która daje prawo do zniżek na paliwa i produkty spożywcze. Szczegóły w naszych stacjach.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Czy można płacić za paliwo z aplikacji?</h3>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Tak, współpracujemy z popularnymi aplikacjami do płatności za paliwo. Możliwość płatności mobilnej dostępna na wszystkich stacjach.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Czy oferujecie mycie samochodów?</h3>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Obecnie nie oferujemy usług myjni samochodowych, jednak planujemy rozszerzenie oferty w przyszłości.</p>
+                            <p>Stacje są czynne 24/7, zwracamy jednocześnie Państwa uwagę na przerwę techniczną, która trwa w okolicy godziny 24 i w czasie której nie jest możliwa sprzedaż.</p>
                         </div>
                     </div>
 
@@ -527,92 +629,110 @@
                 <div class="reviews-grid">
                     <div class="review-card">
                         <div class="review-header">
-                            <div class="review-avatar">🧑‍💼</div>
+                            <div class="review-avatar">👨‍💼</div>
                             <div class="review-info">
-                                <h4>Marcin K.</h4>
+                                <h4>Jan Kowalski</h4>
                                 <div class="review-rating">
                                     <span>⭐⭐⭐⭐⭐</span>
                                     <span>5.0</span>
                                 </div>
                             </div>
                         </div>
-                        <p>"Świetna stacja paliwowa! Zawsze czysto, miła obsługa i dobra kawa. Polecam szczególnie hotdogi - najlepsze w okolicy!"</p>
+                        <p>"Doskonała stacja! Zawsze czysto, paliwo dobrej jakości. Obsługa zawsze uśmiechnięta i pomocna. Polecam każdemu kierowcy!"</p>
                         <span class="review-location">Stacja Dąbrowa Górnicza</span>
+                        <a href="https://www.google.com/maps/place/Stacja+Paliw+S/@50.3295,19.2137,17z" target="_blank" class="google-review-link">
+                            Zobacz na Google Maps
+                        </a>
                     </div>
 
                     <div class="review-card">
                         <div class="review-header">
-                            <div class="review-avatar">👩‍💼</div>
+                            <div class="review-avatar">👩‍🦰</div>
                             <div class="review-info">
-                                <h4>Anna W.</h4>
+                                <h4>Maria Nowak</h4>
                                 <div class="review-rating">
                                     <span>⭐⭐⭐⭐⭐</span>
                                     <span>4.8</span>
                                 </div>
                             </div>
                         </div>
-                        <p>"Bardzo wygodna lokalizacja na Orląt Lwowskich. Szybka obsługa, możliwość płatności kartą. Kawa naprawdę smaczna!"</p>
+                        <p>"Bardzo dobra lokalizacja na Orląt Lwowskich. Szybka obsługa i konkurencyjne ceny. Kawa z automatu naprawdę smaczna!"</p>
                         <span class="review-location">Stacja Sosnowiec Orląt Lwowskich</span>
+                        <a href="https://www.google.com/maps/place/Stacja+Paliw+S/@50.2875,19.1234,17z" target="_blank" class="google-review-link">
+                            Zobacz na Google Maps
+                        </a>
                     </div>
 
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-avatar">👨‍🔧</div>
                             <div class="review-info">
-                                <h4>Tomasz P.</h4>
-                                <div class="review-rating">
-                                    <span>⭐⭐⭐⭐⭐</span>
-                                    <span>4.6</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p>"Dobra jakość paliw, konkurencyjne ceny. Wymiana butli gazowej szybka i bezproblemowa. Często tutaj tankuję."</p>
-                        <span class="review-location">Stacja Sosnowiec Narutowicza</span>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="review-avatar">👩‍🚗</div>
-                            <div class="review-info">
-                                <h4>Katarzyna L.</h4>
-                                <div class="review-rating">
-                                    <span>⭐⭐⭐⭐⭐</span>
-                                    <span>4.9</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p>"Stacja czynna 24h to duży plus! Nocą też zawsze można zatankować bez problemu. Personel bardzo pomocny."</p>
-                        <span class="review-location">Stacja Dąbrowa Górnicza</span>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="review-avatar">🧑‍🏭</div>
-                            <div class="review-info">
-                                <h4>Paweł M.</h4>
+                                <h4>Piotr Wiśniewski</h4>
                                 <div class="review-rating">
                                     <span>⭐⭐⭐⭐⭐</span>
                                     <span>4.7</span>
                                 </div>
                             </div>
                         </div>
-                        <p>"Regulnie kupuję tutaj butle gazowe do grilla. Szybka wymiana, dobre ceny. Dodatkowo można się napić dobrej kawy."</p>
+                        <p>"Super jakość paliw, dobrze działające dystrybutory. Wymiana butli gazowej sprawna. Regularnie tu tankuję."</p>
+                        <span class="review-location">Stacja Sosnowiec Narutowicza</span>
+                        <a href="https://www.google.com/maps/place/Stacja+Paliw+S/@50.2942,19.1167,17z" target="_blank" class="google-review-link">
+                            Zobacz na Google Maps
+                        </a>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">👩‍🚗</div>
+                            <div class="review-info">
+                                <h4>Anna Zielińska</h4>
+                                <div class="review-rating">
+                                    <span>⭐⭐⭐⭐⭐</span>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"Stacja czynna przez całą dobę - bardzo wygodne! Personel zawsze miły i profesjonalny. Bezproblemowa płatność kartą."</p>
+                        <span class="review-location">Stacja Dąbrowa Górnicza</span>
+                        <a href="https://www.google.com/maps/place/Stacja+Paliw+S/@50.3295,19.2137,17z" target="_blank" class="google-review-link">
+                            Zobacz na Google Maps
+                        </a>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-avatar">👨‍🏭</div>
+                            <div class="review-info">
+                                <h4>Michał Dąbrowski</h4>
+                                <div class="review-rating">
+                                    <span>⭐⭐⭐⭐⭐</span>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"Bardzo dobra stacja na Orląt Lwowskich. Paliwo wysokiej jakości, możliwość tankowania także gazem. Polecam!"</p>
                         <span class="review-location">Stacja Sosnowiec Orląt Lwowskich</span>
+                        <a href="https://www.google.com/maps/place/Stacja+Paliw+S/@50.2875,19.1234,17z" target="_blank" class="google-review-link">
+                            Zobacz na Google Maps
+                        </a>
                     </div>
 
                     <div class="review-card">
                         <div class="review-header">
                             <div class="review-avatar">👨‍💻</div>
                             <div class="review-info">
-                                <h4>Rafał S.</h4>
+                                <h4>Łukasz Krawczyk</h4>
                                 <div class="review-rating">
                                     <span>⭐⭐⭐⭐⭐</span>
                                     <span>4.5</span>
                                 </div>
                             </div>
                         </div>
-                        <p>"Nowoczesna stacja z możliwością płatności BLIK i kartą. Paliwa dobrej jakości, obsługa profesjonalna."</p>
+                        <p>"Nowoczesna stacja z BLIK i płatnością bezgotówkową. Dobre ceny i jakość obsługi. Często się tu zatrzymuję w drodze do pracy."</p>
                         <span class="review-location">Stacja Sosnowiec Narutowicza</span>
+                        <a href="https://www.google.com/maps/place/Stacja+Paliw+S/@50.2942,19.1167,17z" target="_blank" class="google-review-link">
+                            Zobacz na Google Maps
+                        </a>
                     </div>
                 </div>
 
@@ -638,12 +758,14 @@
                     <div class="contact-info">
                         <h3>Skontaktuj się z nami</h3>
                         <div class="contact-item">
-                            <strong>Telefon:</strong>
-                            <p>+48 32 123 45 67</p>
+                            <strong>Telefony:</strong>
+                            <p><strong>+48 780 637 399</strong> - Dąbrowa Górnicza</p>
+                            <p><strong>+48 798 167 445</strong> - Sosnowiec Orląt Lwowskich</p>
+                            <p><strong>+48 572 833 939</strong> - Sosnowiec Narutowicza</p>
                         </div>
                         <div class="contact-item">
                             <strong>Email:</strong>
-                            <p>info@stacjes.pl</p>
+                            <p>biuro@dagas.com.pl</p>
                         </div>
                         <div class="contact-item">
                             <strong>Godziny biura:</strong>
@@ -675,7 +797,6 @@
                     <h4>Szybkie linki</h4>
                     <ul>
                         <li><a href="#home">Strona główna</a></li>
-                        <li><a href="#about">O nas</a></li>
                         <li><a href="#locations">Nasze stacje</a></li>
                         <li><a href="#services">Usługi</a></li>
                         <li><a href="#reviews">Opinie</a></li>
@@ -684,8 +805,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Kontakt</h4>
-                    <p>Tel: +48 32 123 45 67</p>
-                    <p>Email: info@stacjes.pl</p>
+                    <p><strong>+48 780 637 399</strong> - Dąbrowa Górnicza</p>
+                    <p><strong>+48 798 167 445</strong> - Sosnowiec Orląt Lwowskich</p>
+                    <p><strong>+48 572 833 939</strong> - Sosnowiec Narutowicza</p>
+                    <p>Email: biuro@dagas.com.pl</p>
                 </div>
             </div>
             <div class="footer-bottom">
