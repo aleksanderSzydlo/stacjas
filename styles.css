@@ -42,6 +42,8 @@ body {
     color: var(--text-dark);
     overflow-x: hidden;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%; /* Prevent font size adjustment on iOS */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlights */
 }
 
 /* Loader Animation */
@@ -294,6 +296,17 @@ body {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    min-height: 48px;
+    min-width: 48px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .hamburger span {
@@ -301,6 +314,7 @@ body {
     height: 3px;
     background: var(--text-medium);
     transition: 0.3s;
+    border-radius: 1px;
 }
 
 /* Sekcja hero */
@@ -1796,11 +1810,45 @@ body {
         font-size: 0.9rem;
         flex-direction: column;
         gap: 4px;
+        min-height: 48px; /* Improved touch target */
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 15px;
+        max-width: 300px;
+    }
+    
+    .hero-stats .stat-item {
+        min-width: auto;
+        flex: none;
+    }
+    
+    .hero-stats .stat-number {
+        font-size: 1.6rem;
+    }
+    
+    .hero-stats .stat-label {
+        font-size: 0.8rem;
+        white-space: normal;
     }
     
     .service-card,
     .location-info {
         padding: 25px 20px;
+    }
+    
+    .filter-btn {
+        min-height: 48px; /* Better touch targets */
+        padding: 12px 20px;
+    }
+    
+    .location-actions .btn-map,
+    .location-actions .btn-facebook,
+    .location-actions .btn-info {
+        min-height: 48px;
+        padding: 12px 20px;
     }
     
     .faq-question {
@@ -2048,5 +2096,22 @@ body {
     
     .gallery-item {
         height: 160px;
+    }
+    
+    /* Ensure all interactive elements have proper touch targets */
+    .nav-menu .contact-link,
+    .social-link,
+    .google-review-link {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Prevent horizontal overflow on small screens */
+    .container,
+    .hero-content,
+    .section-header {
+        overflow-x: hidden;
     }
 }
