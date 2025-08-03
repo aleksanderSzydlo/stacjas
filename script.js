@@ -1,5 +1,86 @@
 // Nawigacja mobilna
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicjalizacja AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+
+    // Loader
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+        loader.classList.add('hidden');
+    }, 1500);
+
+    // Scroll to top button
+    const scrollButton = document.getElementById('scrollToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollButton.classList.add('visible');
+        } else {
+            scrollButton.classList.remove('visible');
+        }
+    });
+
+    scrollButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Animacja liczników
+    const animateCounters = () => {
+        const counters = document.querySelectorAll('[data-count]');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-count'));
+            const duration = 4000; // 4 sekundy - wolniejsza animacja
+            const step = target / (duration / 16); // 60fps
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    const value = Math.floor(current);
+                    if (target >= 100000) {
+                        counter.textContent = value.toLocaleString('pl-PL') + '+';
+                    } else if (target >= 1000) {
+                        counter.textContent = value + '+';
+                    } else {
+                        counter.textContent = value;
+                    }
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    if (target >= 100000) {
+                        counter.textContent = target.toLocaleString('pl-PL') + '+';
+                    } else if (target >= 1000) {
+                        counter.textContent = target + '+';
+                    } else {
+                        counter.textContent = target;
+                    }
+                }
+            };
+            
+            // Uruchom animację gdy element jest widoczny
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(counter);
+        });
+    };
+
+    animateCounters();
+
+    // Hamburgr menu
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
@@ -15,7 +96,49 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburger.classList.remove('active');
         });
     });
+
+    // Filtrowanie lokalizacji
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const locationCards = document.querySelectorAll('.location-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Usuń aktywną klasę z wszystkich przycisków
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Dodaj aktywną klasę do klikniętego przycisku
+            button.classList.add('active');
+
+            const filter = button.getAttribute('data-filter');
+
+            locationCards.forEach(card => {
+                if (filter === 'all') {
+                    card.classList.remove('hidden');
+                } else {
+                    const categories = card.getAttribute('data-category');
+                    if (categories && categories.includes(filter)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    });
 });
+
+// Funkcja do przełączania informacji o lokalizacji
+function toggleLocationInfo(button) {
+    const card = button.closest('.location-card');
+    const details = card.querySelector('.location-details');
+    
+    if (details.style.display === 'none' || !details.style.display) {
+        details.style.display = 'block';
+        button.innerHTML = '<span>⬆️</span> Mniej';
+    } else {
+        details.style.display = 'none';
+        button.innerHTML = '<span>ℹ️</span> Więcej';
+    }
+}
 
 // Płynne przewijanie
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
