@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         counters.forEach(counter => {
             const target = parseInt(counter.getAttribute('data-count'));
-            const duration = 2000; // 2 sekundy - szybsza animacja
+            const duration = 3000; // 3 sekundy - dłuższa animacja
             const step = target / (duration / 16); // 60fps
             let current = 0;
             
