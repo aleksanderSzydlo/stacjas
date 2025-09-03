@@ -1,0 +1,27 @@
+{
+  "name": "Stacje Paliw S",
+  "short_name": "Stacje S",
+  "description": "Stacje Paliw S - Twoje zaufane miejsce na drodze. 3 lokalizacje w Dąbrowie Górniczej i Sosnowcu.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "zdjęcia/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "zdjęcia/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "categories": ["business", "travel"],
+  "lang": "pl",
+  "scope": "/",
+  "related_applications": [],
+  "prefer_related_applications": false
+}

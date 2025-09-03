@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stacje S</title>
+    <meta name="description" content="Stacje Paliw S - Twoje zaufane miejsce na drodze. 3 lokalizacje w Dąbrowie Górniczej i Sosnowcu. Paliwa, kawa, hotdogi, butle gazowe.">
+    <meta name="keywords" content="stacja paliw, benzyna, diesel, LPG, butle gazowe, kawa, hotdogi, Dąbrowa Górnicza, Sosnowiec">
+    <meta name="author" content="Stacje Paliw S">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Stacje Paliw S - Twoje zaufane miejsce na drodze">
+    <meta property="og:description" content="3 lokalizacje w Dąbrowie Górniczej i Sosnowcu. Paliwa, kawa, hotdogi, butle gazowe.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="zdjęcia/logo.jpg">
+    <title>Stacje S - Twoje zaufane miejsce na drodze</title>
     <link rel="icon" type="image/x-icon" href="zdjęcia/logo.jpg">
     <link rel="apple-touch-icon" href="zdjęcia/logo.jpg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#dc2626">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Przejdź do głównej treści</a>
+    
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
@@ -25,7 +37,7 @@
                         <span>Stacje Paliw S</span>
                     </a>
                 </div>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="#about">O nas</a></li>
                     <li><a href="#gallery">Galeria</a></li>
                     <li><a href="#locations">Nasze stacje</a></li>
@@ -35,7 +47,7 @@
                     <li><a href="#reviews">Opinie</a></li>
                     <li><a href="#contact" class="contact-link">Kontakt</a></li>
                 </ul>
-                <div class="hamburger">
+                <div class="hamburger" aria-label="Menu nawigacyjne" aria-expanded="false" aria-controls="nav-menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -44,7 +56,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- Scroll to top button -->
         <button id="scrollToTop" class="scroll-to-top" aria-label="Wróć na górę">
             <span>↑</span>
@@ -118,7 +130,7 @@
                 <div class="locations-grid">
                     <div class="location-card" data-category="24h hotdog kompresor" data-aos="fade-up" data-aos-delay="100">
                         <div class="location-image">
-                            <img src="zdjęcia/dabrowa gornicza dzien.jpeg" alt="Stacja Dąbrowa Górnicza">
+                            <img src="zdjęcia/dabrowa gornicza dzien.jpeg" alt="Stacja Dąbrowa Górnicza" loading="lazy">
                             <div class="location-status">
                                 <span class="status-badge open">Otwarte 24/7</span>
                             </div>
@@ -166,7 +178,7 @@
                     
                     <div class="location-card" data-category="24h hotdog kompresor" data-aos="fade-up" data-aos-delay="200">
                         <div class="location-image">
-                            <img src="zdjęcia/sosnowiec orlat lwowskich.jpeg" alt="Stacja Sosnowiec Orląt Lwowskich">
+                            <img src="zdjęcia/sosnowiec orlat lwowskich.jpeg" alt="Stacja Sosnowiec Orląt Lwowskich" loading="lazy">
                             <div class="location-status">
                                 <span class="status-badge open">Otwarte 24/7</span>
                             </div>
@@ -214,7 +226,7 @@
                     
                     <div class="location-card" data-category="24h" data-aos="fade-up" data-aos-delay="300">
                         <div class="location-image">
-                            <img src="zdjęcia/sosnowiec narutowicza.jpeg" alt="Stacja Sosnowiec Narutowicza">
+                            <img src="zdjęcia/sosnowiec narutowicza.jpeg" alt="Stacja Sosnowiec Narutowicza" loading="lazy">
                             <div class="location-status">
                                 <span class="status-badge open">Otwarte 24/7</span>
                             </div>
@@ -475,7 +487,7 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-                        <img src="Galeria/3067520F-0C5D-449E-9CDA-6B4EED9A6227.jpg" alt="Dystrybutory paliw" onclick="openLightbox(this)">
+                        <img src="Galeria/3067520F-0C5D-449E-9CDA-6B4EED9A6227.jpg" alt="Dystrybutory paliw" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Dystrybutory paliw</h3>
                             <p>Najnowocześniejsze urządzenia do tankowania</p>
@@ -483,7 +495,7 @@
                     </div>
                     
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-                        <img src="Galeria/48389A19-FAE1-4F7D-A2E0-D9A032F4231C.jpg" alt="Wnętrze sklepu stacji" onclick="openLightbox(this)">
+                        <img src="Galeria/48389A19-FAE1-4F7D-A2E0-D9A032F4231C.jpg" alt="Wnętrze sklepu stacji" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Wnętrze sklepu</h3>
                             <p>Szeroki asortyment produktów dla podróżnych</p>
@@ -491,7 +503,7 @@
                     </div>
                     
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-                        <img src="Galeria/4ADAA79E-E09B-4F8F-BA20-FB8C4E10A967.jpg" alt="Strefa obsługi klienta" onclick="openLightbox(this)">
+                        <img src="Galeria/4ADAA79E-E09B-4F8F-BA20-FB8C4E10A967.jpg" alt="Strefa obsługi klienta" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Strefa obsługi</h3>
                             <p>Profesjonalna i przyjazna obsługa klientów</p>
@@ -499,7 +511,7 @@
                     </div>
                     
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
-                        <img src="Galeria/541DBF47-59C9-4F1E-942D-9F46C3F1096E.jpg" alt="Oświetlenie nocne stacji" onclick="openLightbox(this)">
+                        <img src="Galeria/541DBF47-59C9-4F1E-942D-9F46C3F1096E.jpg" alt="Oświetlenie nocne stacji" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Oświetlenie nocne</h3>
                             <p>Bezpieczne tankowanie także w nocy</p>
@@ -507,7 +519,7 @@
                     </div>
                     
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
-                        <img src="Galeria/69C7B0AA-B564-4E0B-B17D-F46B30B17841.jpg" alt="Strefa odpoczynku" onclick="openLightbox(this)">
+                        <img src="Galeria/69C7B0AA-B564-4E0B-B17D-F46B30B17841.jpg" alt="Strefa odpoczynku" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Strefa odpoczynku</h3>
                             <p>Miejsce na krótki odpoczynek w podróży</p>
@@ -515,7 +527,7 @@
                     </div>
                     
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="600">
-                        <img src="Galeria/85ADD62B-40A1-4F3B-A514-F7CFDF1BE634.jpg" alt="Widok zewnętrzny stacji" onclick="openLightbox(this)">
+                        <img src="Galeria/85ADD62B-40A1-4F3B-A514-F7CFDF1BE634.jpg" alt="Widok zewnętrzny stacji" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Widok zewnętrzny</h3>
                             <p>Nowoczesna architektura i funkcjonalne rozwiązania</p>
@@ -523,7 +535,7 @@
                     </div>
                     
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="700">
-                        <img src="Galeria/A713253A-FA8D-4858-9BDA-6959224732EC.jpg" alt="Przestrzeń dla klientów" onclick="openLightbox(this)">
+                        <img src="Galeria/A713253A-FA8D-4858-9BDA-6959224732EC.jpg" alt="Przestrzeń dla klientów" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Przestrzeń dla klientów</h3>
                             <p>Komfortowe miejsce dla naszych gości</p>
@@ -531,7 +543,7 @@
                     </div>
                     
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="800">
-                        <img src="Galeria/D0C8C6F5-5047-41E1-826C-1E78D717B48B.jpg" alt="Wnętrze stacji" onclick="openLightbox(this)">
+                        <img src="Galeria/D0C8C6F5-5047-41E1-826C-1E78D717B48B.jpg" alt="Wnętrze stacji" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Wnętrze stacji</h3>
                             <p>Czyste i nowoczesne wnętrze</p>
@@ -539,7 +551,7 @@
                     </div>
                     
                     <div class="gallery-item" data-aos="fade-up" data-aos-delay="900">
-                        <img src="Galeria/DDA5390A-A447-4CAC-901A-07D9757171B5.jpg" alt="Obszar tankowania" onclick="openLightbox(this)">
+                        <img src="Galeria/DDA5390A-A447-4CAC-901A-07D9757171B5.jpg" alt="Obszar tankowania" loading="lazy" onclick="openLightbox(this)">
                         <div class="gallery-overlay">
                             <h3>Obszar tankowania</h3>
                             <p>Wygodne i bezpieczne tankowanie</p>
@@ -864,11 +876,11 @@
                     </div>
                     <div class="contact-form">
                         <h3>Napisz do nas</h3>
-                        <form id="contactForm">
-                            <input type="text" name="name" placeholder="Imię i nazwisko" required>
-                            <input type="email" name="email" placeholder="Email" required>
-                            <input type="tel" name="phone" placeholder="Telefon">
-                            <select name="service" required>
+                        <form id="contactForm" aria-label="Formularz kontaktowy">
+                            <input type="text" name="name" placeholder="Imię i nazwisko" required aria-label="Imię i nazwisko">
+                            <input type="email" name="email" placeholder="Email" required aria-label="Adres email">
+                            <input type="tel" name="phone" placeholder="Telefon" aria-label="Numer telefonu (opcjonalnie)">
+                            <select name="service" required aria-label="Kategoria rozmowy">
                                 <option value="">Wybierz kategorię rozmowy</option>
                                 <option value="Informacje o stacjach">Informacje o stacjach</option>
                                 <option value="Ceny paliw">Ceny paliw</option>
@@ -876,8 +888,8 @@
                                 <option value="Współpraca">Współpraca</option>
                                 <option value="Inne">Inne</option>
                             </select>
-                            <textarea name="message" placeholder="Wiadomość" rows="5" required></textarea>
-                            <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+                            <textarea name="message" placeholder="Wiadomość" rows="5" required aria-label="Treść wiadomości"></textarea>
+                            <button type="submit" class="btn btn-primary" aria-label="Wyślij formularz kontaktowy">Wyślij wiadomość</button>
                         </form>
                     </div>
                 </div>
@@ -919,7 +931,10 @@
     <!-- Toast Container -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Scripts for better performance -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

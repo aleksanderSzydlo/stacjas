@@ -1,5 +1,18 @@
 // Nawigacja mobilna
 document.addEventListener('DOMContentLoaded', function() {
+    // Rejestracja Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('ServiceWorker registration successful:', registration.scope);
+                })
+                .catch(function(err) {
+                    console.log('ServiceWorker registration failed:', err);
+                });
+        });
+    }
+
     // Inicjalizacja AOS
     AOS.init({
         duration: 800,
@@ -101,8 +114,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
 
     hamburger.addEventListener('click', function() {
+        const isActive = navMenu.classList.contains('active');
+        
         navMenu.classList.toggle('active');
         hamburger.classList.toggle('active');
+        
+        // Ustaw aria-expanded dla dostępności
+        hamburger.setAttribute('aria-expanded', !isActive);
+        
+        // Focusuj pierwszy link po otwarciu menu
+        if (!isActive) {
+            const firstLink = navMenu.querySelector('a');
+            if (firstLink) {
+                setTimeout(() => firstLink.focus(), 100);
+            }
+        }
+    });
+
+    // Obsługa ESC dla zamknięcia menu
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.focus();
+        }
     });
 
     // Zamknij menu po kliknięciu w link
@@ -110,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
         });
     });
 
@@ -269,13 +306,26 @@ function showToast(type, title, message) {
     
     const icon = type === 'success' ? '✅' : '❌';
     
-    toast.innerHTML = `
-        <div class="toast-icon">${icon}</div>
-        <div class="toast-content">
-            <div class="toast-title">${title}</div>
-            <div class="toast-message">${message}</div>
-        </div>
-    `;
+    // Bezpieczne tworzenie elementów zamiast innerHTML
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'toast-icon';
+    iconDiv.textContent = icon;
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'toast-content';
+    
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'toast-title';
+    titleDiv.textContent = title;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'toast-message';
+    messageDiv.textContent = message;
+    
+    contentDiv.appendChild(titleDiv);
+    contentDiv.appendChild(messageDiv);
+    toast.appendChild(iconDiv);
+    toast.appendChild(contentDiv);
     
     container.appendChild(toast);
     
@@ -306,16 +356,33 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Sprawdź czy EmailJS jest dostępne
+            if (typeof emailjs === 'undefined') {
+                showToast('error', 'Błąd systemu', 'System wysyłania emaili nie jest dostępny. Spróbuj ponownie za chwilę.');
+                return;
+            }
+            
             // Pobierz dane z formularza
-            const name = this.querySelector('input[name="name"]').value;
-            const email = this.querySelector('input[name="email"]').value;
-            const phone = this.querySelector('input[name="phone"]').value;
+            const name = this.querySelector('input[name="name"]').value.trim();
+            const email = this.querySelector('input[name="email"]').value.trim();
+            const phone = this.querySelector('input[name="phone"]').value.trim();
             const service = this.querySelector('select[name="service"]').value;
-            const message = this.querySelector('textarea[name="message"]').value;
+            const message = this.querySelector('textarea[name="message"]').value.trim();
             
             // Prosta walidacja
             if (!name || !email || !service || !message) {
                 showToast('error', 'Błąd walidacji', 'Proszę wypełnić wszystkie wymagane pola.');
+                return;
+            }
+            
+            // Walidacja długości pól
+            if (name.length < 2) {
+                showToast('error', 'Błąd walidacji', 'Imię musi mieć co najmniej 2 znaki.');
+                return;
+            }
+            
+            if (message.length < 10) {
+                showToast('error', 'Błąd walidacji', 'Wiadomość musi mieć co najmniej 10 znaków.');
                 return;
             }
             
@@ -324,6 +391,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!emailRegex.test(email)) {
                 showToast('error', 'Nieprawidłowy email', 'Proszę podać prawidłowy adres email.');
                 return;
+            }
+            
+            // Walidacja telefonu (jeśli podany)
+            if (phone && phone.length > 0) {
+                const phoneRegex = /^[+]?[0-9\s\-()]{9,15}$/;
+                if (!phoneRegex.test(phone)) {
+                    showToast('error', 'Nieprawidłowy telefon', 'Proszę podać prawidłowy numer telefonu.');
+                    return;
+                }
             }
             
             // Pokaż komunikat ładowania
@@ -411,7 +487,7 @@ function openLightbox(img) {
     
     lightbox.style.display = 'block';
     lightboxImg.src = img.src;
-    lightboxCaption.innerHTML = img.alt;
+    lightboxCaption.textContent = img.alt;
     
     // Dodaj animację fadeIn
     lightbox.style.opacity = '0';
