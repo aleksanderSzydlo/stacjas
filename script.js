@@ -192,7 +192,7 @@ function initMap() {
             coords: [50.31692947366358, 19.203630915278197], // Dokładne współrzędne
             features: ['☕ Kawa', '🌭 Hotdogi', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
             hours: '24/7',
-            googleMaps: 'https://maps.google.com/maps?q=50.31692947366358,19.203630915278197',
+            googleMaps: 'https://maps.app.goo.gl/wxtDZscz4fHRNeLo9',
             rating: 4.2,
             reviews: 87
         },
@@ -202,7 +202,7 @@ function initMap() {
             coords: [50.28529134844678, 19.149529982398295], // Dokładne współrzędne
             features: ['☕ Kawa', '🌭 Hotdogi', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
             hours: '6:00 - 22:00',
-            googleMaps: 'https://maps.google.com/maps?q=50.28529134844678,19.149529982398295',
+            googleMaps: 'https://maps.app.goo.gl/nAjbCEeqTMsLXbF68',
             rating: 4.1,
             reviews: 124
         },
@@ -212,7 +212,7 @@ function initMap() {
             coords: [50.23916009552177, 19.154755899847597], // Dokładne współrzędne
             features: ['☕ Kawa', '⛽ Wszystkie paliwa', '🔥 Butle gazowe'],
             hours: '6:00 - 22:00',
-            googleMaps: 'https://maps.google.com/maps?q=50.23916009552177,19.154755899847597',
+            googleMaps: 'https://maps.app.goo.gl/TUrNenBvsXCo3QwR7',
             rating: 4.3,
             reviews: 96
         }
@@ -261,30 +261,109 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Formularz kontaktowy
-document.querySelector('.contact-form form').addEventListener('submit', function(e) {
-    e.preventDefault();
+// Toast Notifications
+function showToast(type, title, message) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
     
-    // Pobierz dane z formularza
-    const formData = new FormData(this);
-    const name = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const message = this.querySelector('textarea').value;
+    const icon = type === 'success' ? '✅' : '❌';
     
-    // Prosta walidacja
-    if (!name || !email || !message) {
-        alert('Proszę wypełnić wszystkie pola.');
-        return;
+    toast.innerHTML = `
+        <div class="toast-icon">${icon}</div>
+        <div class="toast-content">
+            <div class="toast-title">${title}</div>
+            <div class="toast-message">${message}</div>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+    
+    // Pokaż toast
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+    
+    // Usuń toast po 4 sekundach
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            if (container.contains(toast)) {
+                container.removeChild(toast);
+            }
+        }, 300);
+    }, 4000);
+}
+
+// Formularz kontaktowy z EmailJS
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicjalizacja EmailJS z publicznym kluczem
+    emailjs.init("3qSdcdYGB_F2FxHQv"); // Publiczny klucz EmailJS
+    
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Pobierz dane z formularza
+            const name = this.querySelector('input[name="name"]').value;
+            const email = this.querySelector('input[name="email"]').value;
+            const phone = this.querySelector('input[name="phone"]').value;
+            const service = this.querySelector('select[name="service"]').value;
+            const message = this.querySelector('textarea[name="message"]').value;
+            
+            // Prosta walidacja
+            if (!name || !email || !service || !message) {
+                showToast('error', 'Błąd walidacji', 'Proszę wypełnić wszystkie wymagane pola.');
+                return;
+            }
+            
+            // Walidacja email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showToast('error', 'Nieprawidłowy email', 'Proszę podać prawidłowy adres email.');
+                return;
+            }
+            
+            // Pokaż komunikat ładowania
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Wysyłanie...';
+            submitBtn.disabled = true;
+            
+            // Parametry dla EmailJS
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                phone: phone || 'Nie podano',
+                service: service,
+                message: message,
+                subject: `Wiadomość ze strony`,
+                reply_to: email,
+                web: 'Stacja S'
+            };
+            
+            // Wyślij email przez EmailJS
+            emailjs.send('service_wvhublc', 'template_ypn9c6y', templateParams)
+                .then(function(response) {
+                    showToast('success', 'Wiadomość wysłana!', 'Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe.');
+                    contactForm.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    console.error('EmailJS error:', error);
+                    showToast('error', 'Błąd wysyłania', 'Wystąpił problem podczas wysyłania wiadomości. Spróbuj ponownie lub skontaktuj się telefonicznie.');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
     }
-    
-    // Symulacja wysyłania (w rzeczywistej aplikacji wysłałbyś dane na serwer)
-    alert('Dziękujemy za wiadomość! Skontaktujemy się z Tobą wkrótce.');
-    this.reset();
 });
 
 // Animacje przy przewijaniu
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.service-card, .location-card, .faq-item, .review-card');
+    const elements = document.querySelectorAll('.service-card, .location-card, .faq-item, .review-slide');
     
     elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
@@ -299,7 +378,7 @@ function animateOnScroll() {
 
 // Ustaw początkowy stan animowanych elementów
 document.addEventListener('DOMContentLoaded', function() {
-    const elements = document.querySelectorAll('.service-card, .location-card, .faq-item, .review-card');
+    const elements = document.querySelectorAll('.service-card, .location-card, .faq-item, .review-slide');
     elements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
@@ -369,4 +448,102 @@ document.addEventListener('DOMContentLoaded', function() {
     if (lightbox) {
         lightbox.style.transition = 'opacity 0.3s ease';
     }
+});
+
+// Reviews Horizontal Slider
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.reviews-slider');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    if (!slider || !prevBtn || !nextBtn) return;
+    
+    const cardWidth = 280 + 30; // updated card width + gap
+    let currentIndex = 0;
+    
+    function updateSlider() {
+        const scrollLeft = currentIndex * cardWidth;
+        slider.scrollTo({
+            left: scrollLeft,
+            behavior: 'smooth'
+        });
+    }
+    
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+        } else {
+            // Go to last slide
+            currentIndex = slider.children.length - Math.floor(slider.offsetWidth / cardWidth);
+            updateSlider();
+        }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        const maxIndex = Math.max(0, slider.children.length - Math.floor(slider.offsetWidth / cardWidth));
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateSlider();
+        } else {
+            // Go back to first slide
+            currentIndex = 0;
+            updateSlider();
+        }
+    });
+    
+    // Touch/swipe support
+    let startX = 0;
+    let scrollStart = 0;
+    
+    slider.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        scrollStart = slider.scrollLeft;
+    });
+    
+    slider.addEventListener('touchmove', (e) => {
+        if (!startX) return;
+        
+        const currentX = e.touches[0].clientX;
+        const diff = startX - currentX;
+        slider.scrollLeft = scrollStart + diff;
+    });
+    
+    slider.addEventListener('touchend', () => {
+        startX = 0;
+        scrollStart = 0;
+        
+        // Snap to closest card
+        const scrollPosition = slider.scrollLeft;
+        currentIndex = Math.round(scrollPosition / cardWidth);
+        updateSlider();
+    });
+    
+    // Auto-scroll every 5 seconds
+    setInterval(() => {
+        const maxIndex = Math.max(0, slider.children.length - Math.floor(slider.offsetWidth / cardWidth));
+        currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+        updateSlider();
+    }, 5000);
+    
+    // Handle expand/collapse functionality
+    const expandBtns = document.querySelectorAll('.expand-btn');
+    
+    expandBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const reviewText = this.parentElement;
+            const isCollapsed = reviewText.classList.contains('collapsed');
+            
+            if (isCollapsed) {
+                reviewText.classList.remove('collapsed');
+                reviewText.classList.add('expanded');
+                this.textContent = '... mniej';
+            } else {
+                reviewText.classList.remove('expanded');
+                reviewText.classList.add('collapsed');
+                this.textContent = '... więcej';
+            }
+        });
+    });
 });

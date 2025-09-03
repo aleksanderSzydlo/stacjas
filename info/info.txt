@@ -1,0 +1,49 @@
+linki do stron:
+google:
+    Sosnowiec - Orląt lwowskich https://share.google/5adde6GqArl0Z58yD
+    Sosnowiec - Narutowicza https://share.google/dOIVOvLkwHtwMRnKh
+    Dąbrowa Górnicza - Porozumienia Dąbrowskiego https://share.google/j9s0vwjx102pvJObD
+
+maps:
+    Sosnowiec - Orląt lwowskich https://maps.app.goo.gl/nAjbCEeqTMsLXbF68
+    Sosnowiec - Narutowicza https://maps.app.goo.gl/TUrNenBvsXCo3QwR7
+    Dąbrowa Górnicza - Porozumienia Dąbrowskiego https://maps.app.goo.gl/wxtDZscz4fHRNeLo9
+
+facebook:
+    Sosnowiec - Orląt lwowskich https://www.facebook.com/stacjaS.orlatLwowskich/
+    Sosnowiec - Narutowicza https://www.facebook.com/stacjaS.narutowicza/
+    Dąbrowa Górnicza - Porozumienia Dąbrowskiego https://www.facebook.com/profile.php?id=61552410699592&locale=pl_PL
+
+Opinie:
+    Narutowicza:
+        5/5 Andrzej P
+        "Znam te stację paliw od lat. Z niektórymi pracownikami jesteśmy praktycznie na "Ty". Zawsze miła atmosfera, konkurencyjne ceny paliw.
+        POLECAM to miejsce 🙂"
+
+        5/5 Katarzyna S
+        "Bardzo przydatna stacja paliw w odpowiednim miejscu u zbiegu Narutowicza i Janowskiego. Jest tam wszystko czego potrzebujesz. Zatankujesz paliwo, coś przekąsisz i napijesz się kawy,skorzystasz z toalety itp. Ceny bardzo przystępne i miła obsługa. Polecam jako mieszkanka Sosnowca."
+
+        5/5 Mariusz P 
+        "Rozsądne ceny paliw. Chopaki szybko działają. Nigdy nie miałem tu problemów."
+
+    Orlat Lwowskich:
+        5/5 Marta B 
+        "Stacja paliw bardzo przyjazna zarówno dla kierowców, jak i ich portfeli. Choć nie należy do żadnej znanej sieci, wyróżnia się wysoką jakością usług. Ceny paliw należą do najbardziej konkurencyjnych w okolicy, co sprawia, że miejsce cieszy się dużą popularnością. Obsługa jest zawsze miła, pomocna i profesjonalna. Choć czasami tworzą się kolejki, zdecydowanie warto tu zaglądać regularnie."
+
+        5/5 Łukasz P 
+        "Moja ulubiona i zarazem najtańsza stacja w okolicy a do tego zawsze b.mila obsługa. Dodam do tego że paliwa też b.dobrej jakości."
+
+        4/5 Iwona K 
+        "Paliwo tańsze. Obsługa dobra. Jedynie co czasem zdążają się chwilę i godziny, że jest kolejka jak za komuny ale to jest wina chwili, akurat tyle ludzi się zjeżdża, później znów spokój."
+
+    Dąbrowa Górnicza:
+        5/5  M K 
+        "Moja ulubiona stacja jak tylko przejeżdżam zawsze leje pod korek a dla siebie pyszną kawę, paliwo chyba najtańsze w okolicy. Oby tak dalej"
+
+        5/5 Wiko Z 
+        "Super obsługa, zawsze mili i uśmiechnięci no i oczywiście ceny paliwa taniej niż u konkurencji. Tak trzymać."
+
+        5/5 Kat Jon 
+        "Polecam. Dobra cena paliwa. Produkty na stacji też w przystępnych bardzo jak na stację cenach,czysto i bardzo miła obsługa. O wiele bardziej wolę tam jechać niż na stację ze znanym logiem."
+
+        
