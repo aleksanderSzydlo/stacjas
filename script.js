@@ -479,43 +479,254 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Lightbox dla galerii
-function openLightbox(img) {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    
-    lightbox.style.display = 'block';
-    lightboxImg.src = img.src;
-    lightboxCaption.textContent = img.alt;
-    
-    // Dodaj animację fadeIn
-    lightbox.style.opacity = '0';
-    setTimeout(() => {
-        lightbox.style.opacity = '1';
-    }, 10);
-    
-    // Zablokuj scrollowanie strony
-    document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    
-    // Dodaj animację fadeOut
-    lightbox.style.opacity = '0';
-    setTimeout(() => {
-        lightbox.style.display = 'none';
-        // Przywróć scrollowanie strony
-        document.body.style.overflow = 'auto';
-    }, 300);
-}
-
-// Zamknij lightbox klawiszem ESC
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeLightbox();
+// NOWY MECHANIZM LIGHTBOX GALERII
+class GalleryLightbox {
+    constructor() {
+        this.lightbox = null;
+        this.lightboxImg = null;
+        this.lightboxCaption = null;
+        this.currentImageIndex = 0;
+        this.images = [];
+        this.isOpen = false;
+        
+        this.init();
     }
+    
+    init() {
+        // Tworzenie struktury lightbox
+        this.createLightboxHTML();
+        
+        // Pobranie wszystkich zdjęć galerii
+        this.images = Array.from(document.querySelectorAll('.gallery-item img'));
+        
+        // Dodanie event listenerów do zdjęć
+        this.bindEvents();
+        
+        console.log(`Gallery Lightbox initialized with ${this.images.length} images`);
+    }
+    
+    createLightboxHTML() {
+        // Usuń istniejący lightbox jeśli istnieje
+        const existingLightbox = document.getElementById('lightbox');
+        if (existingLightbox) {
+            existingLightbox.remove();
+        }
+        
+        // Tworzenie nowego lightbox
+        const lightboxHTML = `
+            <div id="lightbox" class="lightbox">
+                <div class="lightbox-content-wrapper">
+                    <button class="lightbox-close" aria-label="Zamknij galerię">&times;</button>
+                    <button class="lightbox-prev" aria-label="Poprzednie zdjęcie">‹</button>
+                    <button class="lightbox-next" aria-label="Następne zdjęcie">›</button>
+                    <img class="lightbox-image" id="lightbox-img" alt="">
+                    <div class="lightbox-caption" id="lightbox-caption"></div>
+                    <div class="lightbox-counter" id="lightbox-counter"></div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', lightboxHTML);
+        
+        // Pobranie referencji do elementów
+        this.lightbox = document.getElementById('lightbox');
+        this.lightboxImg = document.getElementById('lightbox-img');
+        this.lightboxCaption = document.getElementById('lightbox-caption');
+        this.lightboxCounter = document.getElementById('lightbox-counter');
+    }
+    
+    bindEvents() {
+        // Event listenery dla zdjęć galerii
+        this.images.forEach((img, index) => {
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.open(index);
+            });
+            
+            // Dodaj cursor pointer
+            img.style.cursor = 'pointer';
+            
+            // Dodaj hover effect
+            img.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            img.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Event listenery dla lightbox
+        if (this.lightbox) {
+            // Zamknięcie przez kliknięcie tła
+            this.lightbox.addEventListener('click', (e) => {
+                if (e.target === this.lightbox) {
+                    this.close();
+                }
+            });
+            
+            // Przycisk zamknij
+            const closeBtn = this.lightbox.querySelector('.lightbox-close');
+            closeBtn.addEventListener('click', () => this.close());
+            
+            // Przyciski nawigacji
+            const prevBtn = this.lightbox.querySelector('.lightbox-prev');
+            const nextBtn = this.lightbox.querySelector('.lightbox-next');
+            
+            prevBtn.addEventListener('click', () => this.prev());
+            nextBtn.addEventListener('click', () => this.next());
+        }
+        
+        // Klawisze klawiatury
+        document.addEventListener('keydown', (e) => {
+            if (!this.isOpen) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    this.close();
+                    break;
+                case 'ArrowLeft':
+                    this.prev();
+                    break;
+                case 'ArrowRight':
+                    this.next();
+                    break;
+            }
+        });
+        
+        // Zapobieganie scroll podczas świpowania na mobile
+        let touchStartY = 0;
+        this.lightbox.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        });
+        
+        this.lightbox.addEventListener('touchmove', (e) => {
+            const touchY = e.touches[0].clientY;
+            const touchDiff = touchStartY - touchY;
+            
+            // Zapobiegaj scrollowaniu jeśli ruch jest pionowy
+            if (Math.abs(touchDiff) > 5) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    }
+    
+    open(imageIndex = 0) {
+        this.currentImageIndex = imageIndex;
+        this.isOpen = true;
+        
+        this.updateImage();
+        
+        // Zablokuj scroll strony
+        document.body.style.overflow = 'hidden';
+        document.body.style.paddingRight = this.getScrollbarWidth() + 'px';
+        
+        // Pokaż lightbox z animacją
+        this.lightbox.style.display = 'flex';
+        this.lightbox.style.opacity = '0';
+        
+        // Force reflow
+        this.lightbox.offsetHeight;
+        
+        this.lightbox.style.opacity = '1';
+        this.lightboxImg.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            this.lightboxImg.style.transform = 'scale(1)';
+        }, 50);
+    }
+    
+    close() {
+        if (!this.isOpen) return;
+        
+        this.isOpen = false;
+        
+        // Animacja zamknięcia
+        this.lightbox.style.opacity = '0';
+        this.lightboxImg.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            this.lightbox.style.display = 'none';
+            
+            // Przywróć scroll strony
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+        }, 300);
+    }
+    
+    prev() {
+        if (this.images.length <= 1) return;
+        
+        this.currentImageIndex = this.currentImageIndex > 0 
+            ? this.currentImageIndex - 1 
+            : this.images.length - 1;
+            
+        this.updateImage();
+    }
+    
+    next() {
+        if (this.images.length <= 1) return;
+        
+        this.currentImageIndex = this.currentImageIndex < this.images.length - 1 
+            ? this.currentImageIndex + 1 
+            : 0;
+            
+        this.updateImage();
+    }
+    
+    updateImage() {
+        if (!this.images[this.currentImageIndex]) return;
+        
+        const currentImg = this.images[this.currentImageIndex];
+        
+        // Animacja wymiany zdjęcia
+        this.lightboxImg.style.opacity = '0';
+        this.lightboxImg.style.transform = 'scale(0.9)';
+        
+        setTimeout(() => {
+            this.lightboxImg.src = currentImg.src;
+            this.lightboxImg.alt = currentImg.alt;
+            this.lightboxCaption.textContent = currentImg.alt;
+            this.lightboxCounter.textContent = `${this.currentImageIndex + 1} / ${this.images.length}`;
+            
+            this.lightboxImg.style.opacity = '1';
+            this.lightboxImg.style.transform = 'scale(1)';
+        }, 150);
+        
+        // Ukryj/pokaż przyciski nawigacji
+        const prevBtn = this.lightbox.querySelector('.lightbox-prev');
+        const nextBtn = this.lightbox.querySelector('.lightbox-next');
+        
+        if (this.images.length <= 1) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+        } else {
+            prevBtn.style.display = 'block';
+            nextBtn.style.display = 'block';
+        }
+    }
+    
+    getScrollbarWidth() {
+        // Oblicz szerokość scrollbara
+        const scrollDiv = document.createElement('div');
+        scrollDiv.style.width = '100px';
+        scrollDiv.style.height = '100px';
+        scrollDiv.style.overflow = 'scroll';
+        scrollDiv.style.position = 'absolute';
+        scrollDiv.style.top = '-9999px';
+        document.body.appendChild(scrollDiv);
+        
+        const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        document.body.removeChild(scrollDiv);
+        
+        return scrollbarWidth;
+    }
+}
+
+// Inicjalizacja nowego lightbox
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryLightbox = new GalleryLightbox();
 });
 
 // Dodaj transition do lightbox
@@ -621,5 +832,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.textContent = '... więcej';
             }
         });
+    });
+});
+
+// Navigation highlighting podczas scroll
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Usuń active z wszystkich linków
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Dodaj active do odpowiedniego linka
+                const activeLink = document.querySelector(`.nav-menu a[href="#${entry.target.id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }, {
+        rootMargin: '-60px 0px -60% 0px',
+        threshold: 0.2
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
     });
 });
